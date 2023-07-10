@@ -1,0 +1,24 @@
+.hooks-nav-bar {
+  display: flex;
+}
+
+.buttons-container {
+  display: flex;
+  margin: 5px;
+  border: 1.5px solid blueviolet;
+}
+
+.buttons-container button {
+  margin: 5px;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  color: maroon;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 10px;
+}
+
+.buttons-container button:hover {
+  color: blue;
+}

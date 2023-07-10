@@ -1,25 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Routes, Route } from "react-router-dom";
 
-function App() {
+import Header from "./Components/Header";
+import UseState1 from "./Components/UseState/useState1";
+import UseState2 from "./Components/UseState/useState2";
+import UseStateReviews from "./Components/UseState/useStateReviews";
+import UseReducer1 from "./Components/UseReducer/userReducer1";
+
+import UseEffect1 from "./Components/UseEffect/useEffect1";
+// import UseEffect2 from "./Components/UseEffect/UseEffect2";
+import { ParentComponent } from "./Components/ContextBasics/parentComponent";
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Header />
+      <Routes>
+        <Route path="/useState-1" element={<UseState1 />} />
+        <Route path="/useState-2" element={<UseState2 />} />
+        <Route path="/useState-3" element={<UseStateReviews />} />
+        <Route path="/useEffect-1" element={<UseEffect1 />} />
+        <Route path="/context" element={<ParentComponent />} />
+        <Route path="/useReducer" element={<UseReducer1 />} />
+      </Routes>
+    </>
   );
-}
+};
 
 export default App;
