@@ -2,8 +2,8 @@ import { useContext } from "react";
 import { UserContext } from "../Context/userContext";
 
 export const SubChildComponent = () => {
-  const userData = useContext(UserContext);
-  const { firstName, lastName, email } = userData;
+  const userDetails = useContext(UserContext);
+  const { firstName, lastName, email } = userDetails;
 
   return (
     <div>

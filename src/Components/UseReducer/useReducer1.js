@@ -1,30 +1,33 @@
-import React, { useReducer } from "react";
+import { useReducer } from "react";
 
 const reducer = (state, action) => {
   if (action.type === "DELETE") {
-    const newPersons = state.userData.filter((personId) => {
-      return personId.id !== action.payload;
+    const filterUserData = state.userData.filter((eachUser) => {
+      return eachUser.id !== action.payload;
     });
     return {
-      userData: newPersons,
+      ...state,
+      userData: filterUserData,
+      length: state.length - 1,
     };
   }
+  throw new Error("Action not found");
 };
 
 const UseReducer1 = () => {
   const initialState = {
     userData: [
       {
-        id: 23432,
+        id: "dkk435dsfdsf",
         firstName: "Chandu",
         lastName: "Thanneru",
-        email: "chandu@gmail.com",
+        email: "chandu@example.com",
       },
       {
-        id: 56126,
+        id: "kjd485ihkjdfh",
         firstName: "Chandrakanth",
         lastName: "T",
-        email: "chanduT@gmail.com",
+        email: "chandrakanth@example.com",
       },
     ],
     length: 2,
@@ -41,10 +44,12 @@ const UseReducer1 = () => {
 
   return (
     <div>
-      {state.userData.map((eachItem) => {
-        const { id, firstName, lastName, email } = eachItem;
+      {/* <h3>Current Users: {state.userData.length}</h3> */}
+      <h3>Current Users: {state.length}</h3>
+      {state.userData.map((eachUser) => {
+        const { id, firstName, lastName, email } = eachUser;
         return (
-          <ul key={id} style={{ listStyle: "none" }}>
+          <ul key={id}>
             <li>
               <p>Firstname: {firstName}</p>
               <p>Lastname: {lastName}</p>
@@ -60,4 +65,5 @@ const UseReducer1 = () => {
     </div>
   );
 };
+
 export default UseReducer1;

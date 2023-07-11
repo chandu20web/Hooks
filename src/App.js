@@ -5,7 +5,8 @@ import Header from "./Components/Header";
 import UseState1 from "./Components/UseState/useState1";
 import UseState2 from "./Components/UseState/useState2";
 import UseStateReviews from "./Components/UseState/useStateReviews";
-import UseReducer1 from "./Components/UseReducer/userReducer1";
+import UseReducer1 from "./Components/UseReducer/useReducer1";
+import UseReducer2 from "./Components/UseReducer/useReducer2";
 
 import UseEffect1 from "./Components/UseEffect/useEffect1";
 // import UseEffect2 from "./Components/UseEffect/UseEffect2";
@@ -21,7 +22,8 @@ const App = () => {
         <Route path="/useState-3" element={<UseStateReviews />} />
         <Route path="/useEffect-1" element={<UseEffect1 />} />
         <Route path="/context" element={<ParentComponent />} />
-        <Route path="/useReducer" element={<UseReducer1 />} />
+        <Route path="/useReducer1" element={<UseReducer1 />} />
+        <Route path="/useReducer2" element={<UseReducer2 />} />
       </Routes>
     </>
   );

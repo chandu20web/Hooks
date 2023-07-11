@@ -33,8 +33,11 @@ const Header = () => {
       </div>
 
       <div className="buttons-container">
-        <Link to="/useReducer">
-          <button type="button">useReducer</button>
+        <Link to="/useReducer1">
+          <button type="button">useReducer 1</button>
+        </Link>
+        <Link to="/useReducer2">
+          <button type="button">useReducer 2</button>
         </Link>
       </div>
     </nav>
