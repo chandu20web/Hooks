@@ -1,89 +1,75 @@
 import React, { useReducer, useEffect } from "react";
 
 const reducer = (state, action) => {
-  if (action.type === "UPDATE_USERS_DATA") {
-    return {
-      ...state,
-      usersData: action.payload,
-    };
+  switch (action.type) {
+    case "FETCHED_USER_DATA":
+      return { ...state, userData: action.payload };
+    case "LOADING":
+      return { ...state, isLoading: action.payload };
+    case "ERROR":
+      return { ...state, isError: action.payload };
+    case "DELETE":
+      const filteredUsers = state.userData.filter((eachUser) => {
+        return eachUser.id !== action.payload;
+      });
+      return { ...state, userData: filteredUsers };
+    default:
+      return { ...state };
   }
-  return state;
 };
-
 const UseReducer2 = () => {
-  const fetchingData = async (url) => {
+  const fetchingUserData = async (URL) => {
     dispatch({ type: "LOADING", payload: true });
     dispatch({ type: "ERROR", payload: { status: false, msg: "" } });
     try {
-      const response = await fetch(url);
+      const response = await fetch(URL);
       const responseData = await response.json();
-      dispatch({ type: "UPDATE_USERS_DATA", payload: responseData });
+      console.log(responseData);
+      dispatch({ type: "FETCHED_USER_DATA", payload: responseData });
       dispatch({ type: "LOADING", payload: false });
     } catch (error) {
-      console.log(error);
-      dispatch({ type: "LOADING", payload: false });
+      console.log(error.message);
       dispatch({
         type: "ERROR",
         payload: { status: true, msg: error.message },
       });
+      dispatch({ type: "LOADING", payload: false });
     }
   };
-
   useEffect(() => {
-    fetchingData("https://jsonplaceholder.typicode.com/users");
+    fetchingUserData("https://jsonplaceholder.typicode.com/users");
   }, []);
-
   const initialState = {
-    usersData: [],
+    userData: [],
     isLoading: false,
     isError: { status: false, msg: "" },
   };
-
   const [state, dispatch] = useReducer(reducer, initialState);
-
   const handleDeleteUser = (userId) => {
-    dispatch({
-      type: "DELETE_USER",
-      payload: userId,
-    });
+    dispatch({ type: "DELETE", payload: userId });
   };
-
+  if (state.isLoading) {
+    return <h1>Loading ...</h1>;
+  }
   return (
     <div>
-      <h3>Users Information</h3>
-      <div>
-        {state.usersData.map((eachUser) => {
-          const {
-            id,
-            name,
-            username,
-            email,
-            phone,
-            company,
-            website,
-            address,
-          } = eachUser;
-          return (
-            <ul key={id}>
-              <li>
-                <p>Name: {name}</p>
-                <p>Username: {username}</p>
-                <p>Email: {email}</p>
-                <p>Phone: {phone}</p>
-                <p>Company: {company}</p>
-                <p>Website: {website}</p>
-                <p>Adrres: {address}</p>
-              </li>
-              <hr />
-              <button type="button" onClick={() => handleDeleteUser(id)}>
-                Delete
-              </button>
-            </ul>
-          );
-        })}
-      </div>
+      {state.userData.map((eachUser) => {
+        const { id, name, username, email, phone, website } = eachUser;
+        return (
+          <ul key={id} style={{ listStyle: "none" }}>
+            <li>
+              <p>Name: {name}</p> <p>Username: {username}</p>{" "}
+              <p>Email: {email}</p> <p>Phone: {phone}</p>{" "}
+              <p>Website: {website}</p>{" "}
+            </li>
+            <button type="button" onClick={() => handleDeleteUser(id)}>
+              Delete
+            </button>
+            <hr />
+          </ul>
+        );
+      })}
     </div>
   );
 };
-
 export default UseReducer2;
