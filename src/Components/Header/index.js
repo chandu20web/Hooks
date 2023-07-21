@@ -43,6 +43,12 @@ const Header = () => {
           <button type="button">useReducer 3</button>
         </Link>
       </div>
+
+      <div className="buttons-container">
+        <Link to="/counter">
+          <button type="button">Counter</button>
+        </Link>
+      </div>
     </nav>
   );
 };

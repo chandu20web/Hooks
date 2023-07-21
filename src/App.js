@@ -12,6 +12,7 @@ import UseReducer3 from "./Components/UseReducer/useReducer3";
 import UseEffect1 from "./Components/UseEffect/useEffect1";
 // import UseEffect2 from "./Components/UseEffect/UseEffect2";
 import { ParentComponent } from "./Components/ContextBasics/parentComponent";
+import Counter from "./Components/Counter/counter";
 
 const App = () => {
   return (
@@ -26,6 +27,7 @@ const App = () => {
         <Route path="/useReducer1" element={<UseReducer1 />} />
         <Route path="/useReducer2" element={<UseReducer2 />} />
         <Route path="/useReducer3" element={<UseReducer3 />} />
+        <Route path="/counter" element={<Counter />} />
       </Routes>
     </>
   );
