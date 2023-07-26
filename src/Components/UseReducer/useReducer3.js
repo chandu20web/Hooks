@@ -69,6 +69,7 @@ const UseReducer3 = () => {
     errMsg: "",
   };
   const [state, dispatch] = useReducer(reducer, initialState);
+
   const handleDeleteUser = (userId) => {
     dispatch({ type: "DELETE", payload: userId });
   };
@@ -77,17 +78,14 @@ const UseReducer3 = () => {
       const { id, name, email, gender, status } = eachUser;
       return (
         <ul key={index} style={{ listStyle: "none" }}>
-          {" "}
           <li key={id}>
-            {" "}
-            <p>Name: {name}</p> <p>Email: {email}</p> <p>Gender: {gender}</p>{" "}
-            <p>Status: {status}</p>{" "}
-          </li>{" "}
+            <p>Name: {name}</p> <p>Email: {email}</p> <p>Gender: {gender}</p>
+            <p>Status: {status}</p>
+          </li>
           <button type="button" onClick={() => handleDeleteUser(id)}>
-            {" "}
-            Delete{" "}
-          </button>{" "}
-          <hr />{" "}
+            Delete
+          </button>
+          <hr />
         </ul>
       );
     });
