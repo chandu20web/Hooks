@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 
-const UseState2 = () => {
-  const initialArray = [
+const initialArray = [
     { id: 1783, firstName: "Chandu", lastName: "Thanneru", age: 27 },
     { id: 2243, firstName: "Chandrakanth", lastName: "T", age: 26 },
   ];
 
+const UseState2 = () => {
   const [usersData, setData] = useState(initialArray);
 
   //   const changeFirstName = () => {

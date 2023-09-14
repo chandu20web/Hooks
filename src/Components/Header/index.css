@@ -1,5 +1,7 @@
 .hooks-nav-bar {
   display: flex;
+  width: 900px;
+  flex-wrap: wrap;
 }
 
 .buttons-container {

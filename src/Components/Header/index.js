@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 import "./index.css";
 
@@ -6,48 +6,41 @@ const Header = () => {
   return (
     <nav className="hooks-nav-bar">
       <div className="buttons-container">
-        <Link to="/useState-1">
+        <NavLink to="/useState-1">
           <button type="button">useState 1</button>
-        </Link>
-        <Link to="/useState-2">
+        </NavLink>
+        <NavLink to="/useState-2">
           <button type="button">useState 2</button>
-        </Link>
-        <Link to="/useState-3">
+        </NavLink>
+        <NavLink to="/useState-3">
           <button type="button">useState Reviews</button>
-        </Link>
+        </NavLink>
       </div>
       <div className="buttons-container">
-        <Link to="/useEffect-1">
+        <NavLink to="/useEffect-1">
           <button type="button">useEffect 1</button>
-        </Link>
-
-        <Link to="/useEffect-2">
+        </NavLink>
+        <NavLink to="/useEffect-2">
           <button type="button">useEffect 2</button>
-        </Link>
+        </NavLink>
       </div>
 
       <div className="buttons-container">
-        <Link to="/context">
-          <button type="button">useContext</button>
-        </Link>
-      </div>
-
-      <div className="buttons-container">
-        <Link to="/useReducer1">
+        <NavLink to="/useReducer1">
           <button type="button">useReducer 1</button>
-        </Link>
-        <Link to="/useReducer2">
+        </NavLink>
+        <NavLink to="/useReducer2">
           <button type="button">useReducer 2</button>
-        </Link>
-        <Link to="/useReducer3">
+        </NavLink>
+        <NavLink to="/useReducer3">
           <button type="button">useReducer 3</button>
-        </Link>
+        </NavLink>
       </div>
 
       <div className="buttons-container">
-        <Link to="/counter">
+        <NavLink to="/counter">
           <button type="button">Counter</button>
-        </Link>
+        </NavLink>
       </div>
     </nav>
   );

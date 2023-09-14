@@ -1,20 +1,21 @@
 import React from "react";
 import { connect } from "react-redux";
+import { counterActions } from "../../Redux/actions/actions";
 
 const Counter = (props) => {
   return (
     <>
       <div>
-        <button type="button" onClick={() => props.decrement()}>
+        <button type="button" onClick={props.decrease}>
           -
         </button>
         <span>{props.count}</span>
-        <button type="button" onClick={() => props.increment()}>
+        <button type="button" onClick={props.increase}>
           +
         </button>
       </div>
       <div>
-        <button type="button" onClick={() => props.reset()}>
+        <button type="button" onClick={props.reset}>
           Reset
         </button>
       </div>
@@ -24,31 +25,12 @@ const Counter = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    count: state.count,
+    count: state.counter.count,
   };
 };
 
-const mapDispathToProps = (dispath) => {
-  return {
-    increment: () =>
-      dispath({
-        type: "INCREMENT",
-        payload: 2,
-      }),
-
-    decrement: () =>
-      dispath({
-        type: "DECREMENT",
-        payload: 1,
-      }),
-
-    reset: () => {
-      dispath({
-        type: "RESET",
-        payload: 0,
-      });
-    },
-  };
+const mapDispathToProps = (dispatch) => {
+  return counterActions(dispatch);
 };
 
 export default connect(mapStateToProps, mapDispathToProps)(Counter);
