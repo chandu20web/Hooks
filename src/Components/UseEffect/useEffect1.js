@@ -1,33 +1,78 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 
-const UseEffect1 = () => {
-  const initialObj = { isShowContent: true, inputVal: "", usersData: [] };
+const UseEffect1 = ({ apiObj }) => {
+  const initialObj = {
+    isShowContent: true,
+    inputVal: "",
+    usersData: [],
+    count: 0,
+    url: "https://gorest.co.in/public/v2/users",
+    token: "1b9df5712410ac12229641235690a70261991e433e20a2a451a7438441162603",
+    httpMethod: "GET",
+    apiDetails: {},
+  };
   const [content, setContent] = useState(initialObj);
+  const { count, apiDetails, url, token, httpMethod } = content;
+  console.log("useEffect1 Component Calling ......");
+
+  // const getUrlDetails = async (apiObj) => {
+  //   await setContent((prevState) => ({
+  //     ...prevState,
+  //     apiDetails: apiObj,
+  //   }));
+  // };
+
+  // const getAllSports = useCallback(async () => {
+  //   const apiObj = {
+  //     url: url,
+  //     token: token,
+  //     httpMethod: httpMethod,
+  //   };
+  //   await getUrlDetails(apiObj);
+  //   console.log(apiDetails);
+  // }, [apiObj]);
+
+  // useEffect(() => {
+  //   console.log("useEffect Calling...");
+  //   getAllSports();
+  // }, [getAllSports]);
 
   useEffect(() => {
-    const getApiCall = async () => {
-      const url = "https://gorest.co.in/public/v2/users";
+    console.log("useEffect is Calling ......");
+  }, [count]);
 
-      const options = {
-        method: "GET",
-        headers: {
-          Authorization:
-            "Bearer 1b9df5712410ac12229641235690a70261991e433e20a2a451a7438441162603",
-        },
-      };
+  const handleDecrement = () => {
+    console.log("handleDecrement Before Calling ........");
+    console.log(count);
+    setContent((prevState) => ({
+      ...prevState,
+      count: prevState.count - 1,
+    }));
+    console.log("handleDecrement After Calling ........");
+    console.log(count);
+  };
 
-      const response = await fetch(url, options);
-      const responseData = await response.json();
+  const handleIncrement = async () => {
+    console.log("handleIncrement Before Calling ........");
+    console.log(count);
+    await setContent((prevState) => ({
+      ...prevState,
+      count: prevState.count + 1,
+    }));
+    console.log("handleIncrement After Calling ........");
+    console.log(count);
+  };
 
-      if (response.ok === true) {
-        setContent((prevData) => ({
-          ...prevData,
-          usersData: responseData,
-        }));
-      }
-    };
-    getApiCall();
-  }, []);
+  const handleReset = () => {
+    console.log("handleReset Before Calling ........");
+    console.log(count);
+    setContent((prevState) => ({
+      ...prevState,
+      count: 0,
+    }));
+    console.log("handleReset Before Calling ........");
+    console.log(count);
+  };
 
   const onChangeContent = () => {
     const { isShowContent } = content;
@@ -46,6 +91,13 @@ const UseEffect1 = () => {
 
   return (
     <>
+      {console.log("render calling ....")}
+      {console.log(count)}
+      <button onClick={handleDecrement}>-</button>
+      <span>{content.count}</span>
+      <button onClick={handleIncrement}>+</button>
+      <br />
+      <button onClick={handleReset}>Reset</button>
       <div>
         <button type="button" onClick={onChangeContent}>
           {content.isShowContent ? "Hide Content" : "Show Content"}
